@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calculate</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            margin: 20px;
+        }
+
+        .left-container {
+            margin-right: 20px;
+        }
+
+        .input-container {
+            display: flex;
+            margin-bottom: 10px;
+        }
+
+        .input-container label {
+            margin-right: 10px;
+        }
+
+        button {
+            align-self: flex-start;
+        }
+
+        .result-container {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- เพิ่มภาพ 1.png -->
+    <div class="left-container">
+        <img src="/Users/s-trecmacair4/Desktop/test/1.png" alt="ภาพ 1" width="800" height="700">
+    </div>
+
+    <!-- ขวา -->
+    <div>
+        <h1>คำนวณ</h1>
+
+        <!-- ช่องสำหรับเอารับค่า -->
+        <div class="input-container">
+            <label for="inputValue1">ป้อนค่า 1:</label>
+            <input type="text" id="inputValue1" name="inputValue1">
+        </div>
+
+        <div class="input-container">
+            <label for="inputValue2">ป้อนค่า 2:</label>
+            <input type="text" id="inputValue2" name="inputValue2">
+        </div>
+
+        <div class="input-container">
+            <label for="inputValue3">ป้อนค่า 3:</label>
+            <input type="text" id="inputValue3" name="inputValue3">
+        </div>
+
+        <div class="input-container">
+            <label for="inputValue4">ป้อนค่า 4:</label>
+            <input type="text" id="inputValue4" name="inputValue4">
+        </div>
+
+        <!-- ปุ่มคำนวณ -->
+        <button onclick="calculate1()">คำนวณ PA</button>
+        <button onclick="calculate2()">คำนวณ (VB)y</button>
+        <button onclick="calculate3()">คำนวณ (VB)</button>
+        <button onclick="calculate4()">คำนวณ 0</button>
+        <button onclick="calculate5()">คำนวณ (An)B </button>
+        <button onclick="calculate6()">คำนวณ (At)B </button>
+        <button onclick="calculate7()">คำนวณ pB </button>
+
+        <!-- ผลลัพธ์ -->
+        <div class="result-container">
+            <p id="result1">ผลลัพธ์ 1: </p>
+            <p id="result2">ผลลัพธ์ 2: </p>
+            <p id="result3">ผลลัพธ์ 3: </p>
+            <p id="result4">ผลลัพธ์ 4: </p>
+            <p id="result5">ผลลัพธ์ 5: </p>
+            <p id="result6">ผลลัพธ์ 6: </p>
+            <p id="result7">ผลลัพธ์ 7: </p>
+        </div>
+    </div>
+
+    <script>
+        function calculate1() {
+            var inputValue1 = parseFloat(document.getElementById('inputValue1').value) || 0;
+            var inputValue2 = parseFloat(document.getElementById('inputValue2').value) || 0;
+            var inputValue3 = parseFloat(document.getElementById('inputValue3').value) || 0;
+            var inputValue4 = parseFloat(document.getElementById('inputValue4').value) || 0;
+
+            var result = "Pa: " + ((inputValue3 * inputValue3) / inputValue1);
+            document.getElementById('result1').innerHTML = result;
+        }
+
+        function calculate2() {
+            var inputValue1 = parseFloat(document.getElementById('inputValue1').value) || 0;
+            var inputValue2 = parseFloat(document.getElementById('inputValue2').value) || 0;
+            var inputValue3 = parseFloat(document.getElementById('inputValue3').value) || 0;
+            var inputValue4 = parseFloat(document.getElementById('inputValue4').value) || 0;
+
+            var result = "(VB)y : " + Math.sqrt(((2 * inputValue1) * inputValue4));
+            document.getElementById('result2').innerHTML = result;
+        }
+
+        function calculate3() {
+            var result2Value = parseFloat(document.getElementById('result2').innerText.split(":")[1]) || 0;
+            var inputValue3 = parseFloat(document.getElementById('inputValue3').value) || 0;
+
+            var result = "(VB) : " + Math.sqrt((inputValue3 * inputValue3) + (result2Value * result2Value));
+            document.getElementById('result3').innerHTML = result;
+        }
+        function calculate4() {
+            var result2Value = parseFloat(document.getElementById('result2').innerText.split(":")[1]) || 0;
+            var inputValue3 = parseFloat(document.getElementById('inputValue3').value) || 0;
+
+            // ปรับสมการทำให้ผลลัพธ์เป็น 64.25 องศา
+            var resultInDegrees = Math.atan(result2Value / inputValue3) * (180 / Math.PI);
+
+            // แสดงผลลัพธ์ใน Console
+            console.log("Degrees:", resultInDegrees);
+
+            // แสดงผลลัพธ์ใน HTML
+            var result = " 0 : " + resultInDegrees;
+            document.getElementById('result4').innerHTML = result;
+        }
+
+        function calculate5() {
+            var result4Value = parseFloat(document.getElementById('result4').innerText.split(":")[1]) || 0;
+            var inputValue1 = parseFloat(document.getElementById('inputValue1').value) || 0;
+
+            // คำนวณผลลัพธ์จากสูตรที่คุณให้
+            var result = "(An)B : " + inputValue1 * Math.cos(result4Value * Math.PI / 180); 
+            console.log(result);
+
+            // แสดงผลลัพธ์ใน HTML
+            document.getElementById('result5').innerHTML = result;
+}
+        function calculate6() {
+            var result4Value = parseFloat(document.getElementById('result4').innerText.split(":")[1]) || 0;
+            var inputValue1 = parseFloat(document.getElementById('inputValue1').value) || 0;
+
+            // คำนวณผลลัพธ์จากสูตรที่คุณให้
+            var result = "(An)B : " +  inputValue1 * Math.sin(result4Value * Math.PI / 180); 
+            console.log(result);
+
+            // แสดงผลลัพธ์ใน HTML
+            document.getElementById('result6').innerHTML = result;
+}
+        function calculate7() {
+            var result3Value = parseFloat(document.getElementById('result3').innerText.split(":")[1]) || 0;
+            var result5Value = parseFloat(document.getElementById('result5').innerText.split(":")[1]) || 0;
+
+            var result = "pB: " + (result3Value *result3Value )/result5Value ;
+            document.getElementById('result7').innerHTML = result;
+        }
+
+
+        
+
+    </script>
+</body>
+</html>
